@@ -7,6 +7,9 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+
 @Table(name="socios")
 @Entity(name="Socio")
 @Getter
@@ -20,9 +23,19 @@ public class Socio {
 
     private String nome;
     private String cpf;
+    private LocalDateTime dtcreate;
+    private LocalDateTime dtupdate;
 
     public Socio(DadosRegistrarSocio dados){
         this.nome = dados.nome();
         this.cpf = dados.cpf();
+        this.dtcreate = LocalDateTime.now();
+        this.dtupdate = null;
+    }
+
+    public void atualizarDados(DadosRegistrarSocio dados){
+        this.nome = dados.nome();
+        this.cpf = dados.cpf();
+        this.dtupdate = LocalDateTime.now();
     }
 }
