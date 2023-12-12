@@ -1,6 +1,8 @@
 package com.pedro.socius.infrastructure.entities;
 
+import com.google.gson.JsonArray;
 import com.pedro.socius.application.dtos.local.Categoria;
+import com.pedro.socius.application.dtos.local.DadosRegistrarLocal;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -26,7 +28,15 @@ public class Local {
     private Categoria categoria;
 
     private int qntMaxPessoas;
+    private int qntHoras;
 
-    private Array listaDatasAgendadas;
+    // adicionar campo de lista de datas
+
+    public Local(DadosRegistrarLocal dados){
+        this.nome = dados.nome();
+        this.categoria = dados.categoria();
+        this.qntMaxPessoas = dados.qntMaxPessoas();
+        this.qntHoras = 0;
+    }
 
 }
