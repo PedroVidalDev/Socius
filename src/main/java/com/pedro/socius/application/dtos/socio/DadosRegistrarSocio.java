@@ -1,4 +1,4 @@
-package com.pedro.socius.application.dtos;
+package com.pedro.socius.application.dtos.socio;
 
 import jakarta.validation.constraints.NotBlank;
 import org.hibernate.validator.constraints.br.CPF;

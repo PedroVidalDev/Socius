@@ -1,4 +1,4 @@
-package com.pedro.socius.application.dtos;
+package com.pedro.socius.application.dtos.socio;
 
 import com.pedro.socius.infrastructure.entities.Socio;
 

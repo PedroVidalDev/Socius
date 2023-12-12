@@ -1,13 +1,12 @@
 package com.pedro.socius.infrastructure.entities;
 
-import com.pedro.socius.application.dtos.DadosRegistrarSocio;
+import com.pedro.socius.application.dtos.socio.DadosRegistrarSocio;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Table(name="socios")
