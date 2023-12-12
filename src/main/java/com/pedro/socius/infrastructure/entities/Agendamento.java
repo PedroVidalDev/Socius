@@ -30,6 +30,8 @@ public class Agendamento {
     @JoinColumn(name = "socio_id")
     private Socio socio;
 
+    private int qntPessoas;
+
     private LocalDateTime dataInicio;
     private LocalDateTime dataFim;
 

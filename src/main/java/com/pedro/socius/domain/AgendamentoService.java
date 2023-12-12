@@ -37,10 +37,18 @@ public class AgendamentoService {
 
         if(dataInicio.isAfter(LocalDateTime.now())){
             if(dataFim.isAfter(dataInicio) && dataFim.isBefore(dataInicio.plusDays(1))){
-                Agendamento agendamento = new Agendamento(null, local, socio, dataInicio, dataFim);
+                if(dados.qntPessoas() <= local.getQntMaxPessoas()){
+                    Agendamento agendamento = new Agendamento(null, local, socio, dados.qntPessoas(), dataInicio, dataFim);
 
-                agendamentoRepository.save(agendamento);
+                    agendamentoRepository.save(agendamento);
+                } else{
+                    throw new RuntimeException("Qnt. de pessoas maior que o esperado.");
+                }
+            } else{
+                throw new RuntimeException("Data invalida.");
             }
+        } else{
+            throw new RuntimeException("Data invalida.");
         }
 
 

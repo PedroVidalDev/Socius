@@ -8,8 +8,8 @@ import com.pedro.socius.infrastructure.entities.Socio;
 
 import java.time.LocalDateTime;
 
-public record DadosResgatarAgendamento (Long id, DadosResgatarLocal local, DadosResgatarSocio socio, LocalDateTime dataInicio, LocalDateTime dataFim){
+public record DadosResgatarAgendamento (Long id, DadosResgatarLocal local, DadosResgatarSocio socio, int qntPessoas, LocalDateTime dataInicio, LocalDateTime dataFim){
     public DadosResgatarAgendamento(Agendamento dados){
-        this(dados.getId(), new DadosResgatarLocal(dados.getLocal()), new DadosResgatarSocio(dados.getSocio()), dados.getDataInicio(), dados.getDataFim());
+        this(dados.getId(), new DadosResgatarLocal(dados.getLocal()), new DadosResgatarSocio(dados.getSocio()), dados.getQntPessoas(), dados.getDataInicio(), dados.getDataFim());
     }
 }

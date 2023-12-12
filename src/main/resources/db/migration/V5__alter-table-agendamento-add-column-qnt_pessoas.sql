@@ -1,0 +1,1 @@
+alter table agendamentos add qnt_pessoas int not null;
