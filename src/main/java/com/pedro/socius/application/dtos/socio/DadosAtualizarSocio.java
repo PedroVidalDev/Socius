@@ -5,5 +5,5 @@ import org.hibernate.validator.constraints.br.CPF;
 
 public record DadosAtualizarSocio(
          String nome,
-         @CPF String cpf) {
+         @CPF(message = "CPF deve ser valido.") String cpf) {
 }
