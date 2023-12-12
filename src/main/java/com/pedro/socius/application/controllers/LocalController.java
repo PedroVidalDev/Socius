@@ -2,6 +2,7 @@ package com.pedro.socius.application.controllers;
 
 import com.pedro.socius.application.dtos.local.DadosAtualizarLocal;
 import com.pedro.socius.application.dtos.local.DadosRegistrarLocal;
+import com.pedro.socius.application.dtos.local.DadosResgatarLocal;
 import com.pedro.socius.infrastructure.entities.Local;
 import com.pedro.socius.infrastructure.repositories.LocalRepository;
 import jakarta.transaction.Transactional;
@@ -33,6 +34,6 @@ public class LocalController {
 
         local.atualizar(dados);
 
-        return ResponseEntity.ok(local);
+        return ResponseEntity.ok(new DadosResgatarLocal(local));
     }
 }
