@@ -31,7 +31,7 @@ public class Local {
     private Categoria categoria;
 
     private int qntMaxPessoas;
-    private int qntHoras;
+    private float qntHoras;
     private LocalDateTime dtcreate;
     private LocalDateTime dtupdate;
 
@@ -57,11 +57,9 @@ public class Local {
             this.categoria = dados.categoria();
         }
 
-        else if(!String.valueOf(dados.qntMaxPessoas()).isBlank()){
-            this.qntMaxPessoas = dados.qntMaxPessoas();
-        }
+        this.qntMaxPessoas = dados.qntMaxPessoas();
 
-        if(!nomeAntigo.equals(dados.nome()) || !categoriaAntiga.equals(dados.categoria()) || !(qntMaxPessoasAntiga == dados.qntMaxPessoas())){
+        if(!nomeAntigo.equals(dados.nome()) || !categoriaAntiga.equals(dados.categoria()) || qntMaxPessoasAntiga != dados.qntMaxPessoas()){
             this.dtupdate = LocalDateTime.now();
         }
     }
