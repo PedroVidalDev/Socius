@@ -6,6 +6,7 @@ import com.pedro.socius.application.dtos.local.DadosResgatarLocal;
 import com.pedro.socius.infrastructure.entities.Local;
 import com.pedro.socius.infrastructure.repositories.LocalRepository;
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,7 @@ public class LocalController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity registrar(@RequestBody DadosRegistrarLocal dados){
+    public ResponseEntity registrar(@RequestBody @Valid DadosRegistrarLocal dados){
         Local local = new Local(dados);
 
         repository.save(local);
@@ -29,7 +30,7 @@ public class LocalController {
 
     @PutMapping("/{id}")
     @Transactional
-    public ResponseEntity atualizar(@PathVariable String id, @RequestBody DadosAtualizarLocal dados){
+    public ResponseEntity atualizar(@PathVariable String id, @RequestBody @Valid DadosAtualizarLocal dados){
         var local = repository.getReferenceById(Long.parseLong(id));
 
         local.atualizar(dados);

@@ -51,7 +51,7 @@ public class SocioController {
 
     @PutMapping("/{id}")
     @Transactional
-    public ResponseEntity editar(@PathVariable String id, @RequestBody DadosAtualizarSocio dados){
+    public ResponseEntity editar(@PathVariable String id, @RequestBody @Valid DadosAtualizarSocio dados){
         var socio = repository.getReferenceById(Long.parseLong(id));
 
         socio.atualizarDados(dados);
