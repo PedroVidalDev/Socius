@@ -44,4 +44,11 @@ public class LocalController {
 
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity resgatar(@PathVariable String id){
+        var local = repository.getReferenceById(Long.parseLong(id));
+
+        return ResponseEntity.ok(new DadosResgatarLocal(local));
+    }
 }
