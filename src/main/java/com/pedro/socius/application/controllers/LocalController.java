@@ -1,15 +1,13 @@
 package com.pedro.socius.application.controllers;
 
+import com.pedro.socius.application.dtos.local.DadosAtualizarLocal;
 import com.pedro.socius.application.dtos.local.DadosRegistrarLocal;
 import com.pedro.socius.infrastructure.entities.Local;
 import com.pedro.socius.infrastructure.repositories.LocalRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("locais")
@@ -26,5 +24,15 @@ public class LocalController {
         repository.save(local);
 
         return ResponseEntity.ok().build();
+    }
+
+    @PutMapping("/{id}")
+    @Transactional
+    public ResponseEntity atualizar(@PathVariable String id, @RequestBody DadosAtualizarLocal dados){
+        var local = repository.getReferenceById(Long.parseLong(id));
+
+        local.atualizar(dados);
+
+        return ResponseEntity.ok(local);
     }
 }
