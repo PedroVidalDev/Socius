@@ -13,8 +13,8 @@ import org.hibernate.mapping.Array;
 
 import java.time.LocalDateTime;
 
-@Entity(name="Local")
 @Table(name="locais")
+@Entity(name="Local")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -34,8 +34,6 @@ public class Local {
     private int qntHoras;
     private LocalDateTime dtcreate;
     private LocalDateTime dtupdate;
-
-    // adicionar campo de lista de datas
 
     public Local(DadosRegistrarLocal dados){
         this.nome = dados.nome();
