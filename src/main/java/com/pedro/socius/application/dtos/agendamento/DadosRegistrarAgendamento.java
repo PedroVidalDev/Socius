@@ -12,8 +12,8 @@ public record DadosRegistrarAgendamento(
         @NotNull(message = "ID do socio deve ser preenchido.")
         Long socioId,
         @NotBlank(message = "Data de inicio deve ser preenchida.")
-        LocalDateTime dataInicio,
+        String dataInicio,
         @NotBlank(message = "Data de fim deve ser preenchida.")
-        LocalDateTime dataFim
+        String dataFim
 ) {
 }
