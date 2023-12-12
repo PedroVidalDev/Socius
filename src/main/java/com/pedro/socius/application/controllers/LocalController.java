@@ -36,4 +36,12 @@ public class LocalController {
 
         return ResponseEntity.ok(new DadosResgatarLocal(local));
     }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public ResponseEntity deletar(@PathVariable String id){
+        repository.deleteById(Long.parseLong(id));
+
+        return ResponseEntity.noContent().build();
+    }
 }
