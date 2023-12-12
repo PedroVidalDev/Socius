@@ -1,6 +1,7 @@
 package com.pedro.socius.application.controllers;
 
 import com.pedro.socius.application.dtos.agendamento.DadosRegistrarAgendamento;
+import com.pedro.socius.application.dtos.agendamento.DadosResgatarAgendamento;
 import com.pedro.socius.domain.AgendamentoService;
 import com.pedro.socius.infrastructure.repositories.AgendamentoRepository;
 import jakarta.transaction.Transactional;
@@ -33,6 +34,13 @@ public class AgendamentoController {
         repository.deleteById(Long.parseLong(id));
 
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity resgatar(@PathVariable String id){
+        var agendamento = repository.getReferenceById(Long.parseLong(id));
+
+        return ResponseEntity.ok(new DadosResgatarAgendamento(agendamento));
     }
 
 }
