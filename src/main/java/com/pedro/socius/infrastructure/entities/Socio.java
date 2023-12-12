@@ -34,8 +34,16 @@ public class Socio {
     }
 
     public void atualizarDados(DadosRegistrarSocio dados){
+        if(!this.nome.equals(dados.nome())){
+            this.dtupdate = LocalDateTime.now();
+        }
+
+        else if(!this.cpf.equals(dados.cpf())){
+            this.dtupdate = LocalDateTime.now();
+        }
+
         this.nome = dados.nome();
         this.cpf = dados.cpf();
-        this.dtupdate = LocalDateTime.now();
+
     }
 }
