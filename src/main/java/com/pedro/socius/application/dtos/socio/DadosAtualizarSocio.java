@@ -5,6 +5,9 @@ import jakarta.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.br.CPF;
 
 public record DadosAtualizarSocio(
-         @NotNull String nome,
-         @NotNull @CPF(message = "CPF deve ser valido.") String cpf) {
+         @NotNull(message = "Nome nao deve ser vazio ou nulo.")
+         String nome,
+
+         @NotNull(message = "CPF nao deve ser vazio ou nulo.")
+         @CPF(message = "CPF deve ser valido.") String cpf) {
 }
