@@ -1,4 +1,4 @@
-package com.pedro.socius.application;
+package com.pedro.socius.application.controllers;
 
 import com.pedro.socius.application.dtos.DadosRegistrarSocio;
 import com.pedro.socius.application.dtos.DadosResgatarSocio;
