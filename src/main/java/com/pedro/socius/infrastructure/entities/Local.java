@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.mapping.Array;
 
 @Entity(name="Local")
 @Table(name="locais")
@@ -25,4 +26,7 @@ public class Local {
     private Categoria categoria;
 
     private int qntMaxPessoas;
+
+    private Array listaDatasAgendadas;
+
 }
