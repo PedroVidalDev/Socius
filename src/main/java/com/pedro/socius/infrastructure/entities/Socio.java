@@ -1,5 +1,6 @@
 package com.pedro.socius.infrastructure.entities;
 
+import com.pedro.socius.application.dtos.socio.DadosAtualizarSocio;
 import com.pedro.socius.application.dtos.socio.DadosRegistrarSocio;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -32,13 +33,27 @@ public class Socio {
         this.dtupdate = null;
     }
 
-    public void atualizarDados(DadosRegistrarSocio dados){
-        if(!this.nome.equals(dados.nome()) || !this.cpf.equals(dados.cpf())){
+    public void atualizarDados(DadosAtualizarSocio dados){
+        String nomeAntigo = this.nome;
+        String cpfAntigo = this.cpf;
+
+        if(!dados.nome().isBlank()){
+            this.nome = dados.nome();
+        }
+
+        else if(!dados.cpf().isBlank()){
+            this.cpf = dados.cpf();
+        }
+
+        if(!nomeAntigo.equals(dados.nome()) || !cpfAntigo.equals(dados.cpf())){
             this.dtupdate = LocalDateTime.now();
         }
 
-        this.nome = dados.nome();
-        this.cpf = dados.cpf();
+
+
+
+
+
 
     }
 }

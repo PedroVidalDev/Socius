@@ -1,5 +1,6 @@
 package com.pedro.socius.application.controllers;
 
+import com.pedro.socius.application.dtos.socio.DadosAtualizarSocio;
 import com.pedro.socius.application.dtos.socio.DadosRegistrarSocio;
 import com.pedro.socius.application.dtos.socio.DadosResgatarSocio;
 import com.pedro.socius.infrastructure.entities.Socio;
@@ -50,7 +51,7 @@ public class SocioController {
 
     @PutMapping("/{id}")
     @Transactional
-    public ResponseEntity editar(@PathVariable String id, @RequestBody DadosRegistrarSocio dados){
+    public ResponseEntity editar(@PathVariable String id, @RequestBody DadosAtualizarSocio dados){
         var socio = repository.getReferenceById(Long.parseLong(id));
 
         socio.atualizarDados(dados);
