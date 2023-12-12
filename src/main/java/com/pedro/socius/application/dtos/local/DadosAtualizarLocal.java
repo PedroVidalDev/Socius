@@ -1,7 +1,9 @@
 package com.pedro.socius.application.dtos.local;
 
+import jakarta.validation.constraints.NotNull;
+
 public record DadosAtualizarLocal(
-        String nome,
-        Categoria categoria,
-        int qntMaxPessoas) {
+        @NotNull String nome,
+        @NotNull Categoria categoria,
+        @NotNull int qntMaxPessoas) {
 }
