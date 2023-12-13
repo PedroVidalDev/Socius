@@ -36,18 +36,33 @@ public class AgendamentoService {
 
 
         if(dataInicio.isAfter(LocalDateTime.now())){
-            if(dataFim.isAfter(dataInicio) && dataFim.isBefore(dataInicio.plusDays(1))){
-                if(dados.qntPessoas() <= local.getQntMaxPessoas()){
-                    Agendamento agendamento = new Agendamento(null, local, socio, dados.qntPessoas(), dataInicio, dataFim);
 
-                    agendamentoRepository.save(agendamento);
-                } else{
+            if(dataFim.isAfter(dataInicio) && dataFim.isBefore(dataInicio.plusDays(1))){
+
+                if(dados.qntPessoas() <= local.getQntMaxPessoas()){
+
+                    if(agendamentoRepository.existsByDataInicioBetween(dataInicio, dataFim)){
+                        Agendamento agendamento = new Agendamento(null, local, socio, dados.qntPessoas(), dataInicio, dataFim);
+
+                        agendamentoRepository.save(agendamento);
+                    }
+                    else{
+                        throw new RuntimeException("Já existe um agendamento para esse dia e hora.");
+                    }
+
+                }
+
+                else{
                     throw new RuntimeException("Qnt. de pessoas maior que o esperado.");
                 }
-            } else{
+
+            }
+            else{
                 throw new RuntimeException("Data invalida.");
             }
-        } else{
+
+        }
+        else{
             throw new RuntimeException("Data invalida.");
         }
 
