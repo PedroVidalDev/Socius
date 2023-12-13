@@ -25,7 +25,7 @@ public class AgendamentoService {
     @Autowired
     private AgendamentoRepository agendamentoRepository;
 
-    public void verificarCriacaoAgendamento(DadosRegistrarAgendamento dados) {
+    public Agendamento verificarCriacaoAgendamento(DadosRegistrarAgendamento dados) {
         var local = localRepository.getReferenceById(dados.localId());
         var socio = socioRepository.getReferenceById(dados.socioId());
 
@@ -41,10 +41,12 @@ public class AgendamentoService {
 
                 if(dados.qntPessoas() <= local.getQntMaxPessoas()){
 
-                    if(agendamentoRepository.existsByDataInicioBetween(dataInicio, dataFim)){
+                    if(!agendamentoRepository.existsByDataInicioBetween(dataInicio, dataFim) || !agendamentoRepository.existsByDataFimBetween(dataInicio, dataFim)){
                         Agendamento agendamento = new Agendamento(null, local, socio, dados.qntPessoas(), dataInicio, dataFim);
 
                         agendamentoRepository.save(agendamento);
+
+                        return agendamento;
                     }
                     else{
                         throw new RuntimeException("Já existe um agendamento para esse dia e hora.");
