@@ -11,6 +11,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("locais")
@@ -24,12 +25,14 @@ public class LocalController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity registrar(@RequestBody @Valid DadosRegistrarLocal dados){
+    public ResponseEntity registrar(@RequestBody @Valid DadosRegistrarLocal dados, UriComponentsBuilder uriBuild){
         Local local = new Local(dados);
 
         repository.save(local);
 
-        return ResponseEntity.ok().build();
+        var uri = uriBuild.path("/locais/{id}").buildAndExpand(local.getId()).toUri();
+
+        return ResponseEntity.created(uri).body(new DadosResgatarLocal(local));
     }
 
     @PutMapping("/{id}")
