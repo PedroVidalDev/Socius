@@ -2,7 +2,9 @@ package com.pedro.socius.application.controllers;
 
 import com.pedro.socius.application.dtos.socio.DadosAtualizarSocio;
 import com.pedro.socius.application.dtos.socio.DadosRegistrarSocio;
+import com.pedro.socius.application.dtos.socio.DadosRelatorioSocio;
 import com.pedro.socius.application.dtos.socio.DadosResgatarSocio;
+import com.pedro.socius.domain.SocioService;
 import com.pedro.socius.infrastructure.entities.Socio;
 import com.pedro.socius.infrastructure.repositories.SocioRepository;
 import jakarta.transaction.Transactional;
@@ -12,12 +14,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("socios")
 public class SocioController {
 
     @Autowired
     private SocioRepository repository;
+
+    @Autowired
+    private SocioService service;
 
     @PostMapping
     @Transactional
@@ -39,6 +46,20 @@ public class SocioController {
         DadosResgatarSocio dto = new DadosResgatarSocio(socio);
 
         return ResponseEntity.ok(dto);
+    }
+
+    @GetMapping("/relatorio/{id}")
+    public ResponseEntity<List> relatorioSocio(@PathVariable String id){
+        var relatorio = service.realizarRelatorioPorSocio(Long.parseLong(id));
+
+        return ResponseEntity.ok(relatorio);
+    }
+
+    @GetMapping("/relatorioCategoria")
+    public ResponseEntity<List> relatorioSocioPorCategoria(){
+        var relatorio = service.realizarRelatorioDeSocioPorCategoria();
+
+        return ResponseEntity.ok(relatorio);
     }
 
     @DeleteMapping("/{id}")
