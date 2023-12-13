@@ -41,7 +41,7 @@ public class AgendamentoService {
 
                 if(dados.qntPessoas() <= local.getQntMaxPessoas()){
 
-                    if(!agendamentoRepository.existsByDataInicioBetween(dataInicio, dataFim) || !agendamentoRepository.existsByDataFimBetween(dataInicio, dataFim)){
+                    if(!agendamentoRepository.existsByDataInicioBetweenAndLocal_Id(dataInicio, dataFim, local.getId()) || !agendamentoRepository.existsByDataFimBetweenAndLocal_Id(dataInicio, dataFim, local.getId())){
                         Agendamento agendamento = new Agendamento(null, local, socio, dados.qntPessoas(), dataInicio, dataFim);
 
                         agendamentoRepository.save(agendamento);

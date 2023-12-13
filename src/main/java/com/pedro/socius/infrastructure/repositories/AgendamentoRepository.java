@@ -8,8 +8,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public interface AgendamentoRepository extends JpaRepository<Agendamento, Long> {
-    boolean existsByDataInicioBetween(LocalDateTime dataInicio, LocalDateTime dataFim);
-    boolean existsByDataFimBetween(LocalDateTime dataInicio, LocalDateTime dataFim);
+    boolean existsByDataInicioBetweenAndLocal_Id(LocalDateTime dataInicio, LocalDateTime dataFim, Long id);
+    boolean existsByDataFimBetweenAndLocal_Id(LocalDateTime dataInicio, LocalDateTime dataFim, Long id);
 
 
     List<Agendamento> findAllByLocalId(Long id);
