@@ -3,6 +3,7 @@ package com.pedro.socius.application.controllers;
 import com.pedro.socius.application.dtos.local.DadosAtualizarLocal;
 import com.pedro.socius.application.dtos.local.DadosRegistrarLocal;
 import com.pedro.socius.application.dtos.local.DadosResgatarLocal;
+import com.pedro.socius.domain.LocalService;
 import com.pedro.socius.infrastructure.entities.Local;
 import com.pedro.socius.infrastructure.repositories.LocalRepository;
 import jakarta.transaction.Transactional;
@@ -17,6 +18,9 @@ public class LocalController {
 
     @Autowired
     private LocalRepository repository;
+
+    @Autowired
+    private LocalService service;
 
     @PostMapping
     @Transactional
@@ -51,5 +55,12 @@ public class LocalController {
         var local = repository.getReferenceById(Long.parseLong(id));
 
         return ResponseEntity.ok(new DadosResgatarLocal(local));
+    }
+
+    @GetMapping("/relatorio/{id}")
+    public ResponseEntity relatorioLocal(@PathVariable String id){
+        var relatorio = service.realizarRelatorioPorLocal(Long.parseLong(id));
+
+        return ResponseEntity.ok(relatorio);
     }
 }
