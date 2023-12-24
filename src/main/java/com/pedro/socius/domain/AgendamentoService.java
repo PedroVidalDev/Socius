@@ -2,6 +2,7 @@ package com.pedro.socius.domain;
 
 import com.pedro.socius.application.dtos.agendamento.DadosRegistrarAgendamento;
 import com.pedro.socius.infrastructure.entities.Agendamento;
+import com.pedro.socius.infrastructure.exceptions.ValidacaoAgendamento;
 import com.pedro.socius.infrastructure.repositories.AgendamentoRepository;
 import com.pedro.socius.infrastructure.repositories.LocalRepository;
 import com.pedro.socius.infrastructure.repositories.SocioRepository;
@@ -49,23 +50,23 @@ public class AgendamentoService {
                         return agendamento;
                     }
                     else{
-                        throw new RuntimeException("Já existe um agendamento para esse dia e hora.");
+                        throw new ValidacaoAgendamento("Já existe um agendamento para esse dia e hora.");
                     }
 
                 }
 
                 else{
-                    throw new RuntimeException("Qnt. de pessoas maior que o esperado.");
+                    throw new ValidacaoAgendamento("Qnt. de pessoas maior que o esperado.");
                 }
 
             }
             else{
-                throw new RuntimeException("Data invalida.");
+                throw new ValidacaoAgendamento("Data invalida.");
             }
 
         }
         else{
-            throw new RuntimeException("Data invalida.");
+            throw new ValidacaoAgendamento("Data invalida.");
         }
 
 
